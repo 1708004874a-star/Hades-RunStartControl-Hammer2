@@ -42,8 +42,9 @@ Originally, RunStartControl allows fixing the **first** Daedalus Hammer per weap
 | 条件 | 说明 |
 |---|---|
 | Hades（Steam 版） | 已安装并可正常运行 / Installed and working |
-| RunStartControl mod | 已通过 modimporter 安装并能正常工作 / Installed via modimporter, confirmed working |
-| ModConfigMenu | `config.Menu` 必须为 `"configmenu"`（非 `"prerun"`）/ Must use `"configmenu"` mode |
+| Hades Speedrunning Modpack v1.3.1 | 本修改基于此版本开发与测试 / This mod is developed and tested on this version |
+| RunStartControl mod | 随 Speedrunning Modpack 附带，已通过 modimporter 安装 / Bundled with Speedrunning Modpack, installed via modimporter |
+| ModConfigMenu | 随 Speedrunning Modpack 附带，`config.Menu` 必须为 `"configmenu"` / Bundled with Speedrunning Modpack, must use `"configmenu"` mode |
 | modimporter | `modimporter.exe` 或 `modimporter.py` 可用 |
 
 Windows 版 Content 目录典型路径 / Typical Content path:
