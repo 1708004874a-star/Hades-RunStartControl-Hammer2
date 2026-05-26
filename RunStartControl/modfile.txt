@@ -1,0 +1,16 @@
+-:
+  RunStartControl v1.0
+  Authors:
+    cgull (Discord: cgull#4469)
+    Museus (Discord: Museus#7777)
+:-
+
+Load Priority 55
+Import "RunStartControl.lua"
+Load Priority 56
+Import "ReferenceData.lua"
+Import "AspectSettings.lua"
+Load Priority 100
+Import "AspectConfigMenu.lua"
+Import "Hammer2ConfigMenu.lua"
+Import "PrePactConfigMenu.lua"
