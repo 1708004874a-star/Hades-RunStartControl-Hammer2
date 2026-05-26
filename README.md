@@ -2,6 +2,25 @@
 
 ---
 
+## 目录 / Table of Contents
+
+| 章节 | 内容 |
+|---|---|
+| [安装 / Installation](#安装--installation) | 如何安装到 Hades / How to install into Hades |
+| [功能概述 / Overview](#功能概述--overview) | 本 Mod 做了什么 / What this mod does |
+| [前置条件 / Prerequisites](#前置条件--prerequisites) | 运行所需的软件和版本 / Required software & versions |
+| [核心设计 / Core Design](#核心设计--core-design) | 数据流、哨兵值、第一/第二把区分 / Data flow, sentinel, first vs second hammer |
+| [冲突处理 / Conflict Handling](#冲突处理--conflict-handling) | 三种冲突类型及其解决方案 / Three conflict types & their resolution |
+| [准备工作 / Preparation](#准备工作--preparation) | 备份与编码注意事项 / Backup & encoding notes |
+| [修改步骤 / Step-by-Step Modifications](#修改步骤--step-by-step-modifications) | 5 个文件逐行修改指南 / Line-by-line guide for 5 files |
+| [验证测试 / Verification](#验证测试--verification) | 7 步测试流程 / 7-step test checklist |
+| [常见问题 / Troubleshooting](#常见问题--troubleshooting) | 典型问题及解决方案 / Common issues & solutions |
+| [仓库文件 / Repository Files](#仓库文件--repository-files) | 文件结构说明 / File structure overview |
+| [进阶说明 / Advanced Notes](#进阶说明--advanced-notes) | 自定义与扩展 / Customization & extension tips |
+| [贡献者 / Contributors](#贡献者--contributors) | 项目贡献者与致谢 / Contributors & credits |
+
+---
+
 ## 安装 / Installation
 
 **将 `RunStartControl/` 目录下的所有文件复制到 Hades 的 Mods 目录，覆盖已有文件（建议先备份原文件夹），然后运行 modimporter。**
