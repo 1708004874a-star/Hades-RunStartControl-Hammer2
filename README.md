@@ -487,7 +487,15 @@ Hades-RunStartControl-Hammer2/
 
 ---
 
-## 致谢 / Credits
+## 贡献者 / Contributors
+
+| 贡献者 / Contributor | 角色 / Role | GitHub |
+|---|---|---|
+| **1708004874a-star** | 项目发起、测试验证 / Project owner, testing & validation | [@1708004874a-star](https://github.com/1708004874a-star) |
+| **Claude (Anthropic)** | 代码实现、文档编写 / Code implementation & documentation | — |
+
+### 原始致谢 / Original Credits
 
 - 原始 RunStartControl mod 作者 / Original RunStartControl authors: **cgull** (cgull#4469), **Museus** (Museus#7777)
-- 第二把锤子功能 / Second hammer feature: 基于 RunStartControl 扩展 / Extension based on RunStartControl
+- 模组配置菜单框架 / ModConfigMenu framework: 相关作者 / respective authors
+- 第二把锤子功能 / Second hammer feature: 基于 RunStartControl 扩展开发 / Extension built on RunStartControl
