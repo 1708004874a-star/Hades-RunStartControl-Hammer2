@@ -6,9 +6,9 @@
 
 | 章节 | 内容 |
 |---|---|
-| [安装 / Installation](#安装--installation) | 如何安装到 Hades / How to install into Hades |
 | [功能概述 / Overview](#功能概述--overview) | 本 Mod 做了什么 / What this mod does |
 | [前置条件 / Prerequisites](#前置条件--prerequisites) | 运行所需的软件和版本 / Required software & versions |
+| [安装 / Installation](#安装--installation) | 如何安装到 Hades / How to install into Hades |
 | [核心设计 / Core Design](#核心设计--core-design) | 数据流、哨兵值、第一/第二把区分 / Data flow, sentinel, first vs second hammer |
 | [冲突处理 / Conflict Handling](#冲突处理--conflict-handling) | 三种冲突类型及其解决方案 / Three conflict types & their resolution |
 | [准备工作 / Preparation](#准备工作--preparation) | 备份与编码注意事项 / Backup & encoding notes |
@@ -18,27 +18,6 @@
 | [仓库文件 / Repository Files](#仓库文件--repository-files) | 文件结构说明 / File structure overview |
 | [进阶说明 / Advanced Notes](#进阶说明--advanced-notes) | 自定义与扩展 / Customization & extension tips |
 | [贡献者 / Contributors](#贡献者--contributors) | 项目贡献者与致谢 / Contributors & credits |
-
----
-
-## 安装 / Installation
-
-**将 `RunStartControl/` 目录下的所有文件复制到 Hades 的 Mods 目录，覆盖已有文件（建议先备份原文件夹），然后运行 modimporter。**
-
-Copy all files from `RunStartControl/` to your Hades Mods directory, overwrite existing files (backup recommended first), then run modimporter.
-
-```
-目标路径 / Target path:
-  ...\Hades\Content\Mods\RunStartControl\
-
-导入 / Import:
-  cd "...\Hades\Content"
-  modimporter.exe
-```
-
-确认输出中出现 `Mods/RunStartControl/Hammer2ConfigMenu.lua` 即表示安装成功。启动游戏，进入模组配置面板即可找到「第二把锤子设置」页面。
-
-Confirm `Mods/RunStartControl/Hammer2ConfigMenu.lua` appears in the modimporter output. Launch the game, open Mod Config panel, navigate to the "第二把锤子设置" (Second Hammer Settings) page.
 
 ---
 
@@ -71,6 +50,27 @@ Windows 版 Content 目录典型路径 / Typical Content path:
 D:\Program Files (x86)\Steam\steamapps\common\Hades\Content\
 C:\Program Files (x86)\Steam\steamapps\common\Hades\Content\
 ```
+
+---
+
+## 安装 / Installation
+
+**将 `RunStartControl/` 目录下的所有文件复制到 Hades 的 Mods 目录，覆盖已有文件（建议先备份原文件夹），然后运行 modimporter。**
+
+Copy all files from `RunStartControl/` to your Hades Mods directory, overwrite existing files (backup recommended first), then run modimporter.
+
+```
+目标路径 / Target path:
+  ...\Hades\Content\Mods\RunStartControl\
+
+导入 / Import:
+  cd "...\Hades\Content"
+  modimporter.exe
+```
+
+确认输出中出现 `Mods/RunStartControl/Hammer2ConfigMenu.lua` 即表示安装成功。启动游戏，进入模组配置面板即可找到「第二把锤子设置」页面。
+
+Confirm `Mods/RunStartControl/Hammer2ConfigMenu.lua` appears in the modimporter output. Launch the game, open Mod Config panel, navigate to the "第二把锤子设置" (Second Hammer Settings) page.
 
 ---
 
