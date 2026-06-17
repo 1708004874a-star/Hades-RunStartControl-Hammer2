@@ -101,7 +101,7 @@ SELECT
     (CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 100) %% 100 AS month,
     t.tsdate::date AS day,
     t.line_ut, t.line_qty, t.line_id, t.line_name,
-    now() AS create_time, now() AS update_time
+    now()::timestamp AS create_time, now()::timestamp AS update_time
 FROM (
     WITH t1 AS (
         SELECT
@@ -158,7 +158,7 @@ SELECT
     (CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 100) %% 100 AS month,
     t.tsdate::date AS day,
     t.line_ut, t.line_qty, t.line_id, t.line_name,
-    now() AS create_time, now() AS update_time
+    now()::timestamp AS create_time, now()::timestamp AS update_time
 FROM (
     WITH t1 AS (
         SELECT
@@ -205,7 +205,7 @@ DO UPDATE SET
     qty         = EXCLUDED.qty,
     line_name   = EXCLUDED.line_name,
     daily       = EXCLUDED.daily,
-    update_time = now();
+    update_time = now()::timestamp;
 """
 
 # 5. 回填 ot
