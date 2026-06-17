@@ -68,9 +68,13 @@ def _import_driver():
 # --------------------------------------------------------------------------- #
 
 # 0. 首次自动建表：结构照搬 pv1（带上默认值和自增 id，但不抄索引，索引下面自己建）
+#    顺便把 create_time/update_time 改成不带时区的 timestamp，DBeaver 里就不会显示 +0800
 SQL_CREATE_TABLE = r"""
 CREATE TABLE IF NOT EXISTS dlp04.daily_ddlp_pv2
     (LIKE dlp04.daily_ddlp_pv1 INCLUDING DEFAULTS INCLUDING IDENTITY);
+ALTER TABLE dlp04.daily_ddlp_pv2
+    ALTER COLUMN create_time TYPE timestamp without time zone,
+    ALTER COLUMN update_time TYPE timestamp without time zone;
 """
 
 # 1. 清空
