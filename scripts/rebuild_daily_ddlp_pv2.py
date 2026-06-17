@@ -94,7 +94,7 @@ SELECT
     'SSPA' AS plant_name,
     EXTRACT(DAY FROM t.tsdate)::int AS daily,
     CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 10000 AS year,
-    (CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 100) % 100 AS month,
+    (CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 100) %% 100 AS month,
     t.tsdate::date AS day,
     t.line_ut, t.line_qty, t.line_id, t.line_name,
     now() AS create_time, now() AS update_time
@@ -151,7 +151,7 @@ SELECT
     'SSPA' AS plant_name,
     EXTRACT(DAY FROM t.tsdate)::int AS daily,
     CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 10000 AS year,
-    (CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 100) % 100 AS month,
+    (CAST(to_char(t.tsdate, 'YYYYMMDD') AS INTEGER) / 100) %% 100 AS month,
     t.tsdate::date AS day,
     t.line_ut, t.line_qty, t.line_id, t.line_name,
     now() AS create_time, now() AS update_time
