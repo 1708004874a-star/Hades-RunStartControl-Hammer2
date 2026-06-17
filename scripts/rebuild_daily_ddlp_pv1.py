@@ -11,9 +11,13 @@ rebuild_daily_ddlp_pv1.py
 
   1. (可选) TRUNCATE 清空表          —— --truncate
   2. 删除并重建唯一索引               —— 默认执行，可用 --skip-index 跳过
-  3. 增量 upsert 生产数据(PV/QTY/UT)  —— 默认执行
+  3. upsert 生产数据(PV/QTY/UT)       —— 默认执行，取 tsdate >= --since(默认 2026-01-01)
   4. 用停机数据回填 ot 字段           —— 默认执行
   5. (可选) 打印校验查询结果          —— --verify
+
+说明：第 3 步是 ON CONFLICT(plant_id, day, line_id) 的 upsert，所以“从某天起
+全量重建”和“日常刷新”是同一条语句——已存在的键更新、不存在的插入，重复运行
+幂等、不会产生重复行。要彻底删库重跑就加 --truncate。
 
 数据库连接信息从标准的 PG* 环境变量读取（PGHOST / PGPORT / PGDATABASE /
 PGUSER / PGPASSWORD），也可以用命令行参数覆盖，或直接用 --dsn 传一个完整的
@@ -29,8 +33,8 @@ PGUSER / PGPASSWORD），也可以用命令行参数覆盖，或直接用 --dsn 
     export PGHOST=localhost PGDATABASE=mydb PGUSER=me PGPASSWORD=secret
     python scripts/rebuild_daily_ddlp_pv1.py
 
-    # 先清空再重建，并在结束后打印校验结果
-    python scripts/rebuild_daily_ddlp_pv1.py --truncate --verify
+    # 删库重跑：先清空，再从 2026-01-01 起全量重建，结束后打印校验结果
+    python scripts/rebuild_daily_ddlp_pv1.py --truncate --since 2026-01-01 --verify
 
     # 只看会执行什么，不真正写库
     python scripts/rebuild_daily_ddlp_pv1.py --dry-run
@@ -88,7 +92,9 @@ CREATE UNIQUE INDEX idx_pv1_plant_day_line
 """
 
 # 增量 upsert：从 public.lds_production_data 汇总，写入 dlp04.daily_ddlp_pv1
-# 取最近 N 天的数据，天数由 :days 参数控制
+# 取 tsdate >= :since（默认 2026-01-01）到今天（不含今天）的数据。
+# 因为有 ON CONFLICT(plant_id, day, line_id)，这一条同时是“全量重建”和“日常刷新”：
+# 已存在的键更新、不存在的插入，重复运行幂等、不会产生重复行。
 SQL_UPSERT = r"""
 INSERT INTO dlp04.daily_ddlp_pv1 (
     plant_id,
@@ -129,7 +135,7 @@ FROM (
             ut,
             lineid
         FROM public.lds_production_data
-        WHERE tsdate >= current_date - make_interval(days => %(days)s)
+        WHERE tsdate >= %(since)s
           AND tsdate <  current_date
     ),
     t2 AS (
@@ -342,8 +348,8 @@ def parse_args(argv=None):
                    help="跳过增量 upsert")
     p.add_argument("--skip-ot", action="store_true",
                    help="跳过 ot 字段回填")
-    p.add_argument("--days", type=int, default=50,
-                   help="upsert 取最近多少天的数据 (默认 50)")
+    p.add_argument("--since", default="2026-01-01",
+                   help="upsert 取 tsdate >= 该日期的数据 (默认 2026-01-01)")
     p.add_argument("--verify", action="store_true",
                    help="结束后打印最近 10 天的校验查询")
     p.add_argument("--dry-run", action="store_true",
@@ -402,8 +408,8 @@ def _do_steps(cur, args):
                       dry_run=args.dry_run)
 
     if not args.skip_upsert:
-        run_statement(cur, f"步骤 3: 增量 upsert (最近 {args.days} 天)",
-                      SQL_UPSERT, params={"days": args.days},
+        run_statement(cur, f"步骤 3: upsert (tsdate >= {args.since})",
+                      SQL_UPSERT, params={"since": args.since},
                       dry_run=args.dry_run)
 
     if not args.skip_ot:
